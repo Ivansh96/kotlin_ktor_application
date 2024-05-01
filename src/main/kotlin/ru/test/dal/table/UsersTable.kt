@@ -1,4 +1,4 @@
-package ru.test.dal.model.table
+package ru.test.dal.table
 
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
