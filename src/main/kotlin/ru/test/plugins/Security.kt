@@ -1,28 +1,15 @@
 package ru.test.plugins
 
-import com.auth0.jwt.JWT
-import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
-import kotlinx.coroutines.runBlocking
-import ru.test.authentification.JwtService
-import ru.test.dal.model.RoleModel
-import ru.test.dal.model.UserModel
-import ru.test.service.UserRepositoryImpl
-import ru.test.service.UserService
+import ru.test.service.user.UserService
 
-fun Application.configureSecurity() {
-
-    val jwtService = JwtService()
-    val repository = UserRepositoryImpl()
-    val service = UserService(repository, jwtService)
+fun Application.configureSecurity(service: UserService) {
 
     authentication {
         jwt("jwt") {
-            verifier(jwtService.getVerifier())
+            verifier(service.getJwtVerifier())
             realm = "Service server"
             validate {
                 val payload = it.payload

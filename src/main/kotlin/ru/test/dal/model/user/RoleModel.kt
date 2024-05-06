@@ -1,6 +1,5 @@
-package ru.test.dal.model
+package ru.test.dal.model.user
 
-import com.auth0.jwt.JWT
 import ru.test.util.Constants
 
 enum class RoleModel {

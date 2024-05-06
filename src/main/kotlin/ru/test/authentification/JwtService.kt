@@ -3,7 +3,7 @@ package ru.test.authentification
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
-import ru.test.dal.model.UserModel
+import ru.test.dal.model.user.UserModel
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 

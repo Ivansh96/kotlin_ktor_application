@@ -1,6 +1,6 @@
 package ru.test.dal.repository
 
-import ru.test.dal.model.UserModel
+import ru.test.dal.model.user.UserModel
 
 interface UserRepository {
 

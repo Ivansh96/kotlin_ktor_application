@@ -12,6 +12,7 @@ object CardTable: Table() {
     val title: Column<String> = varchar("title", 100)
     val description: Column<String> = varchar("description", 1000)
     val creationDate: Column<LocalDate> = date("creation_date")
+    val isVerified: Column<Boolean> = bool("is_verified")
 
     override val primaryKey: PrimaryKey = PrimaryKey(id)
 }

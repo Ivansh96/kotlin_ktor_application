@@ -15,6 +15,7 @@ plugins {
 group = "ru.test"
 version = "0.0.1"
 
+
 application {
     mainClass.set("ru.test.ApplicationKt")
 
@@ -47,4 +48,5 @@ dependencies {
 
     implementation("org.postgresql:postgresql:$postgresql_version")
     implementation("com.zaxxer:HikariCP:$hikari_version")
+
 }

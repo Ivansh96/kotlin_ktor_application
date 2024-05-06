@@ -1,12 +1,12 @@
-package ru.test.service
+package ru.test.service.user
 
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
-import ru.test.dal.model.UserModel
-import ru.test.dal.model.getRole
-import ru.test.dal.model.getString
+import ru.test.dal.model.user.UserModel
+import ru.test.dal.model.user.getRole
+import ru.test.dal.model.user.getString
 import ru.test.dal.repository.UserRepository
 import ru.test.dal.table.UsersTable
 import ru.test.plugins.DatabaseFactory.dbQuery

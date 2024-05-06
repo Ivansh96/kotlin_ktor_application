@@ -1,4 +1,4 @@
-package ru.test.dal.model
+package ru.test.dal.model.user
 
 import io.ktor.server.auth.*
 
