@@ -1,4 +1,4 @@
-package ru.test.request
+package ru.test.request.user
 
 import kotlinx.serialization.Serializable
 

@@ -2,6 +2,7 @@ package ru.test.service.user
 
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.exposedLogger
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import ru.test.dal.model.user.UserModel
@@ -10,6 +11,7 @@ import ru.test.dal.model.user.getString
 import ru.test.dal.repository.UserRepository
 import ru.test.dal.table.UsersTable
 import ru.test.plugins.DatabaseFactory.dbQuery
+
 
 class UserRepositoryImpl : UserRepository {
 
@@ -23,13 +25,15 @@ class UserRepositoryImpl : UserRepository {
 
     override suspend fun addUser(userModel: UserModel) {
         return dbQuery {
-            UsersTable.insert {
-                email.eq(userModel.email)
-                login.eq(userModel.login)
-                firstname.eq(userModel.firstname)
-                lastname.eq(userModel.lastname)
-                isActive.eq(userModel.isActive)
-                role.eq(userModel.role.getString())
+            UsersTable.insert { table ->
+                table[email] = userModel.email
+                table[login] = userModel.login
+                table[password] = userModel.password
+                table[firstname] = userModel.firstname
+                table[lastname] = userModel.lastname
+                table[isActive] = userModel.isActive
+                table[role] = userModel.role.getString()
+
             }
         }
     }

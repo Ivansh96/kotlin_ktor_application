@@ -12,5 +12,10 @@ class Constants {
         const val GENERAL = "Something went wrong!"
         const val WRONG_EMAIL = "Wrong email address!"
         const val INCORRECT_PASSWORD = "Incorrect password!"
+        const val INCORRECT_FIELDS = "Incorrect fields!"
+    }
+
+    object Success {
+        const val GENERAL = "Successful action!"
     }
 }

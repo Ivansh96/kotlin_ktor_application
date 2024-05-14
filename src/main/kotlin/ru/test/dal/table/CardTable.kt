@@ -11,7 +11,7 @@ object CardTable: Table() {
     val ownerId: Column<Int> = integer("owner_id").references(UsersTable.id)
     val title: Column<String> = varchar("title", 100)
     val description: Column<String> = varchar("description", 1000)
-    val creationDate: Column<LocalDate> = date("creation_date")
+    val creationDate: Column<String> = varchar("creation_date", 50)
     val isVerified: Column<Boolean> = bool("is_verified")
 
     override val primaryKey: PrimaryKey = PrimaryKey(id)

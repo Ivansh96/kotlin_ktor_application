@@ -1,9 +1,11 @@
-package ru.test.dal.model.card
+package ru.test.request.card
 
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
-data class CardModel(
-    val id: Int,
+@Serializable
+data class CardRegisterRequest(
+    val id: Int? = null,
     val ownerId: Int,
     val title: String,
     val description: String,

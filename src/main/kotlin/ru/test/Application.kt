@@ -24,9 +24,8 @@ fun Application.module() {
     val cardService = CardService(cardRepository)
 
     dbInit()
+    configureMonitoring()
+    configureSerialization()
     configureSecurity(userService)
-//    configureMonitoring()
-//    configureSerialization()
-//    configureDatabases()
     configureRouting(userService, cardService)
 }

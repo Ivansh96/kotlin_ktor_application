@@ -8,8 +8,8 @@ import io.ktor.server.routing.*
 import ru.test.authentification.hash
 import ru.test.dal.model.user.UserModel
 import ru.test.dal.model.user.getRole
-import ru.test.request.LoginRequest
-import ru.test.request.RegisterRequest
+import ru.test.request.user.LoginRequest
+import ru.test.request.user.RegisterRequest
 import ru.test.response.BaseResponse
 import ru.test.service.user.UserService
 import ru.test.util.Constants
@@ -23,15 +23,14 @@ fun Route.userRoute(userService: UserService) {
             call.respond(HttpStatusCode.BadRequest, BaseResponse(false, Constants.Error.GENERAL))
             return@post
         }
-
         try {
             val user = UserModel(
                 id = 0,
                 email = registerRequest.email.trim().lowercase(),
                 login = registerRequest.login.trim().lowercase(),
-                password = hashFun(registerRequest.password.trim()),
-                firstname = registerRequest.firstName.trim(),
-                lastname = registerRequest.lastName.trim(),
+                password = registerRequest.password.trim().lowercase(),
+                firstname = registerRequest.firstname.trim(),
+                lastname = registerRequest.lastname.trim(),
                 role = registerRequest.role.trim().getRole()
             )
             userService.createUser(user)
