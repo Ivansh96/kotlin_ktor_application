@@ -1,10 +1,7 @@
 package ru.test.service.user
 
-import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.exposedLogger
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
 import ru.test.dal.model.user.UserModel
 import ru.test.dal.model.user.getRole
 import ru.test.dal.model.user.getString
@@ -34,6 +31,14 @@ class UserRepositoryImpl : UserRepository {
                 table[isActive] = userModel.isActive
                 table[role] = userModel.role.getString()
 
+            }
+        }
+    }
+
+    override suspend fun deleteUser(userId: Int) {
+        return dbQuery {
+            UsersTable.deleteWhere {
+                id.eq(userId)
             }
         }
     }

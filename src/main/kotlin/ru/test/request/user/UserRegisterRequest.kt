@@ -3,7 +3,8 @@ package ru.test.request.user
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RegisterRequest (
+data class UserRegisterRequest (
+    val userId: Int? = null,
     val email: String,
     val login: String,
     val password: String,

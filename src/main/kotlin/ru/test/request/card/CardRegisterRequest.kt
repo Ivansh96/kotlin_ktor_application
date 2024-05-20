@@ -5,10 +5,9 @@ import java.time.LocalDate
 
 @Serializable
 data class CardRegisterRequest(
-    val id: Int? = null,
     val ownerId: Int,
     val title: String,
     val description: String,
-    val creationDate: String,
+    val creationDate: String = LocalDate.now().toString(),
     val isVerified: Boolean = false
 )

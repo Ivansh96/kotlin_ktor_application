@@ -14,6 +14,8 @@ class UserService(
 
     suspend fun getUserByEmail(email: String) = userRepository.getUserByEmail(email = email)
 
+    suspend fun deleteUser(userId: Int) = userRepository.deleteUser(userId = userId)
+
     fun generateToken(userModel: UserModel): String = jwtService.generateToken(userModel = userModel)
 
     fun getJwtVerifier(): JWTVerifier = jwtService.getVerifier()

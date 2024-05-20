@@ -13,9 +13,14 @@ class Constants {
         const val WRONG_EMAIL = "Wrong email address!"
         const val INCORRECT_PASSWORD = "Incorrect password!"
         const val INCORRECT_FIELDS = "Incorrect fields!"
-    }
+        const val USER_NOT_FOUND = "Error! user not found!"
+     }
 
     object Success {
         const val GENERAL = "Successful action!"
+    }
+
+    object Value {
+        const val ID = "id"
     }
 }

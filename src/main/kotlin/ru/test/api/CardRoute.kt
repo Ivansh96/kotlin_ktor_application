@@ -14,14 +14,6 @@ import ru.test.util.Constants
 
 fun Route.cardRoute(cardService: CardService) {
 
-    get("api/v1/cards") {
-        try {
-            val cards = cardService.getAllCards()
-            call.respond(HttpStatusCode.OK, cards)
-        } catch (e: Exception) {
-            call.respond(HttpStatusCode.Conflict, BaseResponse(false, e.message ?: Constants.Error.GENERAL))
-        }
-    }
 
     authenticate("jwt") {
         post("api/v1/register-card") {
@@ -67,13 +59,22 @@ fun Route.cardRoute(cardService: CardService) {
         }
 
         delete("api/v1/delete-card") {
-            val cardRegisterRequest = call.receiveNullable<CardRegisterRequest>() ?: kotlin.run {
-                call.respond(HttpStatusCode.BadRequest, BaseResponse(false, Constants.Error.INCORRECT_FIELDS))
+            val cardToDeleteId = call.request.queryParameters[Constants.Value.ID]?.toInt() ?: kotlin.run {
+                call.respond(HttpStatusCode.BadRequest, BaseResponse(false, Constants.Error.GENERAL))
                 return@delete
             }
             try {
-                cardService.deleteCard(cardId = cardRegisterRequest.id ?: 0)
+                cardService.deleteCard(cardId = cardToDeleteId)
                 call.respond(HttpStatusCode.OK, BaseResponse(true, Constants.Success.GENERAL))
+            } catch (e: Exception) {
+                call.respond(HttpStatusCode.Conflict, BaseResponse(false, e.message ?: Constants.Error.GENERAL))
+            }
+        }
+
+        get("api/v1/cards") {
+            try {
+                val cards = cardService.getAllCards()
+                call.respond(HttpStatusCode.OK, cards)
             } catch (e: Exception) {
                 call.respond(HttpStatusCode.Conflict, BaseResponse(false, e.message ?: Constants.Error.GENERAL))
             }
